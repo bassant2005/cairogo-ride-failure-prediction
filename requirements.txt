@@ -1,0 +1,22 @@
+# Core data analysis
+numpy
+pandas
+scipy
+
+# Visualization
+matplotlib
+seaborn
+
+# Machine learning
+scikit-learn
+
+# Notebook environment
+jupyter
+ipykernel
+
+# Utilities
+joblib
+pyyaml
+
+# Optional: testing and code quality
+pytest
