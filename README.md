@@ -89,10 +89,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 | Role | Name | Student ID | GitHub |
 |---|---|---|---|
-| Leader | _(add name)_ | 20231067 | bassant2005 |
-| Member B | _(add name)_ | _(add ID)_ | _(add GitHub)_ |
-| Member C | _(add name)_ | _(add ID)_ | _(add GitHub)_ |
-| Member D | _(add name)_ | _(add ID)_ | _(add GitHub)_ |
+| Leader | _(Rawda Raafat Ramadan)_ | _(20231067)_ |
+| Member B |  _(Mariam Ehad Hassan)_ | _(20231160)_ |
+| Member C |  _(Bassant Tarek)_ | _(20231037)_ |
+| Member D | _(Rahma Bahgat)_ | _(20231056)_ | 
 
 ## Project status
 - [x] Phase 0 — Repository, environment setup & dataset inspection ✅
