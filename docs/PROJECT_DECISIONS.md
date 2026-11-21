@@ -1,15 +1,39 @@
 # Project Decisions Log
 
-Record decisions agreed by the team. Do not silently change shared assumptions.
+> سجّل هنا كل قرار بيتاخد. ممنوع تغيّر افتراض مشترك من غير ما تضيفه هنا.
 
 | Date | Decision | Reason | Agreed by |
 |---|---|---|---|
-| YYYY-MM-DD | Initial repository structure | Keep project files organized | Team |
+| 2026-11-21 | Pack version = v17 | Leader ID 20231067 → 1067 % 25 = 17 | Team |
+| 2026-11-21 | Repo structure: data/raw, processed, notebooks, src, models, reports, docs, tests | Standard ML project layout | Team |
+| 2026-11-21 | Data files NOT committed to Git (in .gitignore) | Privacy + file size | Team |
+| 2026-11-21 | Target variable: `request_failed` (1 = failed, 0 = completed) | data_dictionary.md | Team |
+| 2026-11-21 | Prediction point: at_request — only features with recorded_at = "at_request" allowed | Prevent data leakage | Team |
+| 2026-11-21 | LEAKAGE columns (never use as features): actual_trip_time_min, cancel_reason, driver_arrival_min, support_ticket_flag | recorded_at = after_decision or after_completion | Team |
+| 2026-11-21 | Train set: trips.csv — Validation set: recent_labelled.csv (forward-in-time) | Temporal split prevents leakage | Team |
+| 2026-11-21 | Branch naming: phase0/, phase1/, phase2/, fix/ | CONTRIBUTING.md | Team |
+| 2026-11-21 | Random seed = 42 for all splits and models | Reproducibility | Team |
+| 2026-11-21 | Variable naming: snake_case for all Python variables and column names | Consistency | Team |
+| 2026-11-21 | Notebook naming: 01_data_overview, 02_data_audit, 03_feature_engineering, 04_model_*, 05_model_comparison | notebooks/README.md | Team |
 
-## Items to confirm from the official project brief
-- Exact target column name and positive class meaning.
-- Prediction point: when must the prediction be made?
-- Dataset license/privacy and whether it may be committed.
-- Required evaluation metrics.
-- Required train/validation/test strategy.
-- Required models and deliverables.
+---
+
+## Items confirmed from official project brief
+
+- [x] Target column: `request_failed` — positive class = 1 (failed)
+- [x] Prediction point: at time of ride request (at_request features only)
+- [x] Dataset: Pack v17 — not to be committed (private)
+- [x] Train/val strategy: trips.csv (train) → recent_labelled.csv (validation, forward-in-time)
+- [x] Holdout: holdout_inputs.csv (2,767 rows) — submit predictions as holdout_predictions.csv
+- [ ] Required evaluation metrics — to confirm from CairoGo_Assignment.pdf
+- [ ] Required models — to confirm from CairoGo_Assignment.pdf
+
+---
+
+## Open Questions
+
+| Question | Status |
+|---|---|
+| هل ممكن نستخدم features من customers/drivers/zones كـ join مع trips؟ | ✅ نعم — مسموح |
+| rating_avg فيها missing — نعمل إيه؟ | 🔄 تقرر في Phase 1 |
+| weather فيها 4.5% missing — نعمل إيه؟ | 🔄 تقرر في Phase 1 |

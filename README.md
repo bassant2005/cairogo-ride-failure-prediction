@@ -86,9 +86,15 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 - Never overwrite the original raw dataset.
 
 ## Team
-Add all four members' names and GitHub usernames here.
+
+| Role | Name | Student ID | GitHub |
+|---|---|---|---|
+| Leader | _(add name)_ | 20231067 | bassant2005 |
+| Member B | _(add name)_ | _(add ID)_ | _(add GitHub)_ |
+| Member C | _(add name)_ | _(add ID)_ | _(add GitHub)_ |
+| Member D | _(add name)_ | _(add ID)_ | _(add GitHub)_ |
 
 ## Project status
-- [ ] Phase 0 — Repository and environment setup
+- [x] Phase 0 — Repository, environment setup & dataset inspection ✅
 - [ ] Phase 1 — Data understanding and audit
 - [ ] Phase 2 — Feature engineering and model training
