@@ -33,7 +33,7 @@ cairogo-ride-failure-prediction/
 
 ### 1. Clone the repository
 ```bash
-git clone <REPOSITORY_URL>
+git clone https://github.com/bassant2005/cairogo-ride-failure-prediction.git
 cd cairogo-ride-failure-prediction
 ```
 
@@ -87,8 +87,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Team
 
-| Role | Name | Student ID | GitHub |
-|---|---|---|---|
+| Role | Name | Student ID |
+|---|---|---|
 | Leader | _(Rawda Raafat Ramadan)_ | _(20231067)_ |
 | Member B |  _(Mariam Ehad Hassan)_ | _(20231160)_ |
 | Member C |  _(Bassant Tarek)_ | _(20231037)_ |
