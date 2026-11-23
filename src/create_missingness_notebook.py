@@ -13,7 +13,7 @@ cells = []
 # Title & Metadata
 cells.append(nbf.v4.new_markdown_cell("""# 📊 Phase 1 — Task 2: Missingness Analysis (MNAR Investigation)
 
-**Owner:** Person D (Rahma Bahgat — ID: 20231056)  
+**Owner:** Person D (Rawda Raafat — ID: 20231067)  
 **Role:** Member D — Data Audit & Missingness Lead  
 **Dataset Pack:** v17 (Leader ID: 20231067)  
 **Official Task:** Part 1, Task 2 — Missingness (0.50 Marks)  

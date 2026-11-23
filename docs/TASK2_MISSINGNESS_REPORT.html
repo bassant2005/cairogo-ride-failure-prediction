@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CairoGo — Task 2 Missingness Analysis Report (Person D)</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 30px;
+  }
+  h1 { color: #1a365d; border-bottom: 3px solid #2b6cb0; padding-bottom: 12px; margin-bottom: 8px; }
+  h2 { color: #2b6cb0; margin-top: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; }
+  h3 { color: #2d3748; margin-top: 20px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #ebf8ff;
+    color: #2b6cb0;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  th, td {
+    border: 1px solid #cbd5e0;
+    padding: 10px 14px;
+    text-align: left;
+  }
+  th {
+    background-color: #edf2f7;
+    color: #1a202c;
+    font-weight: 700;
+  }
+  tr:nth-child(even) { background-color: #f7fafc; }
+  .highlight-danger { color: #c53030; font-weight: bold; }
+  .highlight-safe { color: #276749; font-weight: bold; }
+  .callout {
+    background-color: #ebf8ff;
+    border-left: 4px solid #3182ce;
+    padding: 15px 18px;
+    margin: 20px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .callout-title { font-weight: 700; color: #2b6cb0; margin-bottom: 6px; }
+  pre {
+    background: #1a202c;
+    color: #f7fafc;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13px;
+  }
+  @media print {
+    body { max-width: 100%; margin: 0; padding: 20px; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print" style="background: #feebc8; border: 1px solid #fbd38d; padding: 12px; border-radius: 6px; margin-bottom: 25px;">
+  💡 <strong>To export this report as a PDF:</strong> Press <code>Ctrl + P</code> (or Cmd + P) in your browser and choose <strong>"Save as PDF"</strong>.
+</div>
+
+<h1>CairoGo — Phase 1: Task 2 Missingness Analysis Report</h1>
+<p>
+  <span class="badge">Dataset Pack: v17</span>
+  <span class="badge">Author: Rawda Raafat (Person D - 20231067)</span>
+  <span class="badge">Target: request_failed</span>
+  <span class="badge">Date: 24 November 2026</span>
+</p>
+
+<h2>1. Executive Summary & Objective</h2>
+<p>
+  In Phase 1, Task 2 investigates missing values in <strong><code>weather</code></strong> (from <code>trips.csv</code>) and <strong><code>rating_avg</code></strong> (from <code>drivers.csv</code> joined to <code>trips.csv</code>). 
+</p>
+<p>
+  The objective is to determine whether missingness is <strong>MCAR</strong> (Missing Completely At Random) or <strong>MNAR</strong> (Missing Not At Random / Informative):
+</p>
+<ul>
+  <li>If <strong>random</strong>, missing values could be replaced by a simple mean or dropped.</li>
+  <li>If <strong>informative</strong>, the fact that data is missing is a <em>predictive risk signal</em> that must be preserved.</li>
+</ul>
+
+<div class="callout">
+  <div class="callout-title">Key Finding</div>
+  Both features exhibit <strong>statistically significant, informative missingness (MNAR)</strong>:
+  <ul>
+    <li>Trips with <strong>missing weather</strong> have a <strong class="highlight-danger">+4.06% higher failure rate</strong> (&chi;² = 13.47, p = 0.00024).</li>
+    <li>Trips with <strong>unrated drivers</strong> have a <strong class="highlight-danger">+5.04% higher failure rate</strong> (&chi;² = 47.60, p = 5.22 &times; 10⁻¹²).</li>
+  </ul>
+</div>
+
+<h2>2. Detailed Statistical Findings (Pack v17)</h2>
+
+<h3>A. Weather Missingness (trips.csv)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Value</th>
+      <th>Interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Total Trips</td>
+      <td>28,244</td>
+      <td>Historical dataset size</td>
+    </tr>
+    <tr>
+      <td>Missing Weather Count</td>
+      <td>1,279 (4.53%)</td>
+      <td>Share of requests without logged weather</td>
+    </tr>
+    <tr>
+      <td>Failure Rate (Weather Missing)</td>
+      <td class="highlight-danger">21.66%</td>
+      <td>Significantly higher than baseline</td>
+    </tr>
+    <tr>
+      <td>Failure Rate (Weather Present)</td>
+      <td class="highlight-safe">17.60%</td>
+      <td>Normal baseline failure rate</td>
+    </tr>
+    <tr>
+      <td>Difference (&Delta;p)</td>
+      <td class="highlight-danger">+0.0406 (+4.06%)</td>
+      <td>Informative risk gap</td>
+    </tr>
+    <tr>
+      <td>Chi-Square Test</td>
+      <td>&chi;² = 13.4692, p = 0.00024</td>
+      <td>Statistically significant (p &lt; 0.001)</td>
+    </tr>
+    <tr>
+      <td>Classification</td>
+      <td><strong>"informative"</strong> (MNAR)</td>
+      <td>Missing weather behaves similarly to rain (21.51%)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>B. Driver Rating Missingness (drivers.csv joined with trips)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Value</th>
+      <th>Interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Drivers Missing Rating</td>
+      <td>264 / 1,500 (17.60%)</td>
+      <td>Drivers with too few completed rated trips</td>
+    </tr>
+    <tr>
+      <td>Trips Handled by Unrated Drivers</td>
+      <td>3,103 / 28,244 (10.99%)</td>
+      <td>Share of requests assigned to unrated drivers</td>
+    </tr>
+    <tr>
+      <td>Failure Rate (Unrated Driver)</td>
+      <td class="highlight-danger">22.27%</td>
+      <td>Substantially elevated failure risk</td>
+    </tr>
+    <tr>
+      <td>Failure Rate (Rated Driver)</td>
+      <td class="highlight-safe">17.23%</td>
+      <td>Standard failure rate for rated drivers</td>
+    </tr>
+    <tr>
+      <td>Difference (&Delta;p)</td>
+      <td class="highlight-danger">+0.0504 (+5.04%)</td>
+      <td>Major operational differentiator</td>
+    </tr>
+    <tr>
+      <td>Chi-Square Test</td>
+      <td>&chi;² = 47.6023, p = 5.22 &times; 10⁻¹²</td>
+      <td>Extremely statistically significant</td>
+    </tr>
+    <tr>
+      <td>Classification</td>
+      <td><strong>"informative"</strong> (MNAR)</td>
+      <td>Inexperienced drivers are less reliable</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Official Submission: mnar JSON Block</h2>
+<p>To be merged into the team's <code>results.json</code>:</p>
+<pre><code>{
+  "mnar": {
+    "weather_missing_share": 0.0453,
+    "weather_failure_rate_missing": 0.2166,
+    "weather_failure_rate_present": 0.1760,
+    "weather_diff": 0.0406,
+    "weather_interpretation": "informative",
+    "driver_rating_missing_share_drivers": 0.1760,
+    "driver_rating_missing_share_trips": 0.1099,
+    "driver_rating_failure_rate_missing": 0.2227,
+    "driver_rating_failure_rate_present": 0.1723,
+    "driver_rating_diff": 0.0504,
+    "driver_rating_interpretation": "informative"
+  }
+}</code></pre>
+
+<h2>4. Phase 2 Preprocessing & Modeling Directives</h2>
+<ol>
+  <li><strong>Never Drop Rows:</strong> <code>holdout_inputs.csv</code> has 6.43% missing weather and 10.91% missing driver ratings. Dropping rows violates the submission contract.</li>
+  <li><strong>Weather Encoding:</strong> Treat <code>NaN</code> as an explicit category: <code>['clear', 'dust', 'rain', 'missing']</code>.</li>
+  <li><strong>Driver Rating Imputation:</strong> Impute numeric ratings with the <em>training set median</em> AND create a binary indicator feature: <code>rating_avg_is_missing = 1</code>.</li>
+</ol>
+
+</body>
+</html>

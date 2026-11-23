@@ -28,7 +28,7 @@
 | Task | Owner | Status | Branch |
 |---|---|---|---|
 | EDA على trips.csv | B | ⬜ TODO | `phase1/B-eda-trips` |
-| Missing values analysis | D | ✅ Done | `phase1/person-d-missingness` |
+| Missing values analysis | D (Rawda) | ✅ Done | `phase1/person-d-missingness` |
 | Join trips + customers + drivers + zones | A | ⬜ TODO | `phase1/A-data-joins` |
 | Leakage audit — confirm forbidden columns | C | ⬜ TODO | `phase1/person-c-data-audit` |
 | Target distribution & class imbalance | B | ⬜ TODO | `phase1/B-target-dist` |
