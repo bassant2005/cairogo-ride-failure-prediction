@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CairoGo — Technical Audit Report: Task 1a</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #eff6ff;
+      --secondary: #0f766e;
+      --danger: #b91c1c;
+      --danger-light: #fef2f2;
+      --success: #15803d;
+      --success-light: #f0fdf4;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --bg-card: #ffffff;
+      --bg-page: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg-page);
+      padding: 40px 20px;
+    }
+
+    .report-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 1.85rem;
+      color: #0f172a;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      background: #f1f5f9;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      margin-top: 16px;
+    }
+
+    .meta-item strong {
+      color: #334155;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      color: #0f172a;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .metric-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .metric-card.highlight {
+      border-color: #93c5fd;
+      background: #f8fafc;
+    }
+
+    .metric-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .metric-value.danger {
+      color: var(--danger);
+    }
+
+    .metric-value.success {
+      color: var(--success);
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.875rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f8fafc;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fbfcfe;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-success { background: var(--success-light); color: var(--success); }
+    .badge-danger  { background: var(--danger-light); color: var(--danger); }
+    .badge-info    { background: var(--primary-light); color: var(--primary); }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      margin: 16px 0;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .callout {
+      border-left: 4px solid var(--secondary);
+      background-color: #f0fdfa;
+      padding: 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    .callout strong {
+      color: var(--secondary);
+    }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .report-container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      pre {
+        background: #f8fafc !important;
+        color: #000000 !important;
+        border: 1px solid #cbd5e1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="report-container">
+
+  <header>
+    <div class="header-badge">CairoGo ML Engineering Report</div>
+    <h1>Technical Audit Report: Task 1a — Join Loss & Geographic Zone Mapping</h1>
+    <div class="meta-grid">
+      <div class="meta-item"><strong>Author:</strong> Mariam Ehab Hassan</div>
+      <div class="meta-item"><strong>Student ID:</strong> 20231160</div>
+      <div class="meta-item"><strong>Dataset Pack:</strong> Pack v17 (Leader: 20231067)</div>
+      <div class="meta-item"><strong>Branch:</strong> <code>phase1/data-joins</code></div>
+      <div class="meta-item"><strong>Task ID:</strong> Task 1a (Rubric: 0.375 Marks)</div>
+      <div class="meta-item"><strong>Status:</strong> <span class="badge badge-success">Completed & Verified</span></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>1. Executive Summary & Audit Metrics</h2>
+    <p>
+      An audit of the relational link between <code>trips.csv</code> and official geographic zones in <code>zones.csv</code> revealed that legacy naming conventions in historical requests caused significant join loss. Discarding these records would have biased model training, as affected records exhibited elevated failure rates. An automated remediation strategy fully recovered 100% of the impaired data.
+    </p>
+
+    <div class="metrics-grid">
+      <div class="metric-card highlight">
+        <div class="metric-value danger">0.1148</div>
+        <div class="metric-label">Join Loss Fraction</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">3,243</div>
+        <div class="metric-label">Affected Trips</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">3</div>
+        <div class="metric-label">Legacy Zones Found</div>
+      </div>
+      <div class="metric-card highlight">
+        <div class="metric-value success">0.0000</div>
+        <div class="metric-label">Post-Fix Loss</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Discovery of Unmatched Identifiers</h2>
+    <p>
+      Comparing unique zone identifiers between <code>trips.csv</code> and <code>zones.csv</code> identified three distinct legacy strings in <code>pickup_zone</code> that failed to join against the official <code>zone_name</code> attribute:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Legacy Name in <code>trips.csv</code></th>
+          <th>Official Standard in <code>zones.csv</code></th>
+          <th>Affected Trips</th>
+          <th>Dataset Share</th>
+          <th>Zone Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>Dokki</code></td>
+          <td><strong><code>Dokki District</code></strong></td>
+          <td>1,189</td>
+          <td>4.21%</td>
+          <td><span class="badge badge-info">midtown</span></td>
+        </tr>
+        <tr>
+          <td><code>New Cairo</code></td>
+          <td><strong><code>New Cairo District</code></strong></td>
+          <td>1,062</td>
+          <td>3.76%</td>
+          <td><span class="badge badge-info">new_city</span></td>
+        </tr>
+        <tr>
+          <td><code>Badr City</code></td>
+          <td><strong><code>Badr City District</code></strong></td>
+          <td>992</td>
+          <td>3.51%</td>
+          <td><span class="badge badge-info">suburb</span></td>
+        </tr>
+        <tr>
+          <td><strong>Total / Cumulative</strong></td>
+          <td><strong>3 Standardized Targets</strong></td>
+          <td><strong>3,243</strong></td>
+          <td><strong>11.48%</strong></td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. Distributional Disparity & Selection Bias Risk</h2>
+    <p>
+      Dropping unmatched rows (a common pitfall in naive data preparation) would have introduced target selection bias. The ride request failure rate in the unmatched subset is markedly higher than in the remainder of the dataset:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Partition</th>
+          <th>Total Requests</th>
+          <th>Failed Requests</th>
+          <th>Failure Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Unmatched Requests (Legacy Zones)</td>
+          <td>3,243</td>
+          <td>624</td>
+          <td><strong style="color: var(--danger);">19.24%</strong></td>
+        </tr>
+        <tr>
+          <td>Matched Requests (Standard Zones)</td>
+          <td>25,001</td>
+          <td>4,399</td>
+          <td><strong>17.60%</strong></td>
+        </tr>
+        <tr>
+          <td>Entire Dataset (Benchmark)</td>
+          <td>28,244</td>
+          <td>5,023</td>
+          <td><strong>17.78%</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Key Finding:</strong> Requests originating in legacy zones experienced a failure rate <strong>+1.64% higher</strong> than standard zones. Discarding them would artificially deflate training failure rates and undermine model sensitivity for peripheral and suburban regions.
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Authoritative Remediation Strategy</h2>
+    <p>
+      The mapping was achieved by referencing the explicit <code>legacy_name</code> attribute provided in <code>zones.csv</code>, ensuring zero manual guesswork:
+    </p>
+    <pre><code># Vectorized legacy-to-standard mapping
+legacy_mapping = zones.set_index("legacy_name")["zone_name"].to_dict()
+
+# Remediation applied across both pickup and dropoff attributes
+trips["pickup_zone"]  = trips["pickup_zone"].replace(legacy_mapping)
+trips["dropoff_zone"] = trips["dropoff_zone"].replace(legacy_mapping)
+
+# Verification
+assert len(set(trips["pickup_zone"]) - set(zones["zone_name"])) == 0</code></pre>
+  </section>
+
+  <section>
+    <h2>5. Multi-Table Integration Schema</h2>
+    <p>
+      Following zone standardization, <code>trips</code> was integrated with customer and driver profiles. To prevent feature collisions, home zones were partitioned into <code>customer_home_zone</code> and <code>driver_home_zone</code>:
+    </p>
+    <ul>
+      <li><strong>Base Table:</strong> <code>trips.csv</code> (28,244 rows)</li>
+      <li><strong>Geographic Attributes Joined:</strong> <code>zone_type</code>, <code>has_metro</code> (0 missing)</li>
+      <li><strong>Customer Demographics:</strong> <code>loyalty_tier</code>, <code>channel</code>, <code>signup_date</code></li>
+      <li><strong>Driver Attributes:</strong> <code>vehicle_type</code>, <code>experience_months</code>, <code>rating_avg</code></li>
+      <li><strong>Final Dimensions:</strong> <strong>28,244 rows &times; 29 columns</strong> exported to <code>data/processed/trips_cleaned.csv</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. Submission Payload for <code>results.json</code></h2>
+    <pre><code>{
+  "join": {
+    "unmatched_before": 0.1148,
+    "unmatched_zones": [
+      "Badr City",
+      "Dokki",
+      "New Cairo"
+    ],
+    "fix": "Replaced legacy zone names in pickup_zone and dropoff_zone using legacy_name to zone_name mapping from zones.csv"
+  }
+}</code></pre>
+  </section>
+
+  <footer>
+    <span>CairoGo Machine Learning Project &bull; Fall 2026</span>
+    <span>Document: <code>TASK1A_JOIN_LOSS_REPORT.html</code> (Printable as PDF)</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
