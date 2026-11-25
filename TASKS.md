@@ -106,6 +106,19 @@
 
 ---
 
+### Phase 1.3 — Shared Data Cleaning Pipeline (`phase1/data-cleaning`)
+
+| Step | Owner | Status | Branch | Notes |
+|---|---|---|---|---|
+| Initialize shared pipeline `notebooks/03_data_cleaning.ipynb` | Team | ✅ Done | `phase1/data-cleaning` | Base pipeline template for all 4 members |
+| Fix Audit Issues (`src/data_corrections.py` + Section 2) | Mariam (A) | ⬜ TODO | `phase1/A-data-corrections` | Zone mapping fix & audit corrections |
+| Handle Missing Values (`src/missing_values.py` + Section 3) | Rahma (B) | ⬜ TODO | `phase1/B-missing-values` | Imputation & missingness flags |
+| Fix Data Types & Duplicates (`src/data_validation.py` + Section 4) | Bassant (C) | ⬜ TODO | `phase1/C-data-validation` | Datetime, numeric types, duplicate checks |
+| Validate Target (`src/target_validation.py` + Section 5) | Rawda (D) | ⬜ TODO | `phase1/D-target-validation` | Binary 0/1 check & leakage exclusion |
+| Final validation & export `trips_model_ready.csv` (Section 6) | All | ⬜ TODO | `phase1/data-cleaning` | Run after all 4 sections are merged |
+
+---
+
 ## Phase 2 — Feature Engineering & Model Training
 **Goal:** Build a leakage-free feature pipeline and train all required models on a shared time-based split. Parallel experiments, 7–8 days.
 
