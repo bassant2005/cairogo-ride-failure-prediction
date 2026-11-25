@@ -58,7 +58,7 @@ pip install -r requirements.txt
 ```
 
 ### 4. Add the dataset
-Place the authorized project dataset in `data/raw/`. Keep the original file unchanged.
+Place the authorized project dataset in `../data/raw`. Keep the original file unchanged.
 Do not commit private, restricted, or large dataset files unless the course/project rules explicitly permit it.
 
 ### 5. Start Jupyter
@@ -66,7 +66,7 @@ Do not commit private, restricted, or large dataset files unless the course/proj
 jupyter notebook
 ```
 
-Open the notebooks in `notebooks/`.
+Open the notebooks in `../notebooks`.
 
 ## Team workflow
 1. Pull the latest `main` branch before starting work.

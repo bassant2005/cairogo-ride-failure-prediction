@@ -32,7 +32,7 @@ At least one teammate should review the Pull Request before merging.
 - Keep notebooks focused on one task.
 - Restart the kernel and run all cells before submitting.
 - Remove unnecessary output and avoid committing huge embedded outputs.
-- Move reusable functions into `src/` when appropriate.
+- Move reusable functions into `../src` when appropriate.
 
 ## Data and privacy
 - Do not commit secrets, credentials, or restricted data.
