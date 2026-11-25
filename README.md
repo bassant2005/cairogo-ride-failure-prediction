@@ -87,14 +87,14 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Team
 
-| Role | Name | Student ID |
-|---|---|---|
-| Leader | _(Rawda Raafat Ramadan)_ | _(20231067)_ |
-| Member B |  _(Mariam Ehad Hassan)_ | _(20231160)_ |
-| Member C |  _(Bassant Tarek)_ | _(20231037)_ |
-| Member D | _(Rahma Bahgat)_ | _(20231056)_ | 
+| Person | Name | Student ID | GitHub | Responsibilities |
+|---|---|---|---|---|
+| **Leader / D** | Rawda Raafat Ramadan | 20231067 | `rawdaraafat` | Missingness Analysis, MLPClassifier, Decision Evaluation, Dashboard Validation |
+| **A** | Mariam Ehab Hassan | 20231160 | `Marria-m` | Join Loss & Zone Mapping, Logistic Regression, Policy Implementation, FastAPI |
+| **B** | Rahma Bahgat | 20231056 | `RahmaBahgat` | Unit Shift & Confounding, Gradient Boosting, Policy Baselines, Docker |
+| **C** | Bassant Tarek | 20231037 | `bassant2005` | Leakage Analysis, kNN, Segment-informed Decisions, Dashboard |
 
 ## Project status
-- [x] Phase 0 — Repository, environment setup & dataset inspection ✅
+- [x] Phase 0 — Repository, environment setup & dataset inspection
 - [ ] Phase 1 — Data understanding and audit
 - [ ] Phase 2 — Feature engineering and model training
