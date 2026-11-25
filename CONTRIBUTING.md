@@ -2,15 +2,13 @@
 
 ## Branch naming
 Use:
-- `phase0/<short-task>`
-- `phase1/<short-task>`
-- `phase2/<short-task>`
-- `fix/<short-description>`
+* `PhaseX.(subPhase)/PX-task` — for individual tasks within a phase/sub-phase (where `PX` is the person/owner code, like `PA`, `PB`, `PC`, `PD`)
+* `PhaseX.(subPhase)/Main-<task>` — when creating a shared base branch for a task that will lead to new sub-branches worked on by multiple team members (shared data cleaning pipeline)
+* `fix/<short-description>` — for bug fixes
 
 Examples:
-- `phase0/repository-setup`
-- `phase1/missingness-audit`
-- `phase2/logistic-regression`
+* `Phase1.0/PA-data-corrections` (pattern: `Phase1.0/PA-yyyy`)
+* `Phase1.3/Main-data-cleaning`
 
 ## Commit messages
 Use short, descriptive messages:
