@@ -110,7 +110,7 @@
 
 | Step | Owner | Status | Branch | Notes |
 |---|---|---|---|---|
-| Initialize shared pipeline `notebooks/03_data_cleaning.ipynb` | Team | ✅ Done | `phase1/data-cleaning` | Base pipeline template for all 4 members |
+| Initialize shared pipeline `notebooks/06_data_cleaning.ipynb` | Team | ✅ Done | `phase1/data-cleaning` | Base pipeline template for all 4 members |
 | Fix Audit Issues (`src/data_corrections.py` + Section 2) | Mariam (A) | ⬜ TODO | `phase1/A-data-corrections` | Zone mapping fix & audit corrections |
 | Handle Missing Values (`src/missing_values.py` + Section 3) | Rahma (B) | ⬜ TODO | `phase1/B-missing-values` | Imputation & missingness flags |
 | Fix Data Types & Duplicates (`src/data_validation.py` + Section 4) | Bassant (C) | ⬜ TODO | `phase1/C-data-validation` | Datetime, numeric types, duplicate checks |
