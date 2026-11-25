@@ -137,7 +137,7 @@ pip install pandas numpy jupyter
 
 ## How to Run
 
-1. Place the four CSV files in `data/raw/cairogo_pack/`.
+1. Place the four CSV files in `../data/raw/cairogo_pack`.
 2. Open the notebook in Jupyter Notebook, JupyterLab, or a compatible environment.
 3. Make sure the notebook's working directory makes the relative `PACK` path resolve to the dataset folder.
 4. Run the notebook cells in order, from Step 1 through Step 12.
