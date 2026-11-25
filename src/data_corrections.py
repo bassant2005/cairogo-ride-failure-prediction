@@ -37,3 +37,33 @@ def fix_zone_names(
         out[dropoff_col] = out[dropoff_col].replace(mapping)
 
     return out
+
+
+def verify_zone_fix(
+    df_fixed: pd.DataFrame,
+    zones_df: pd.DataFrame,
+    pickup_col: str = "pickup_zone",
+    dropoff_col: str = "dropoff_zone",
+) -> None:
+    """Check that no unmatched zone names remain after the fix."""
+    valid = set(zones_df["zone_name"].dropna())
+
+    for col in [pickup_col, dropoff_col]:
+        if col not in df_fixed.columns:
+            continue
+        leftover = set(df_fixed[col].dropna()) - valid
+        assert len(leftover) == 0, (
+            f"Column '{col}' still has unmatched zone names: {leftover}"
+        )
+
+    print("Zone name fix verified: 0 unmatched values remain.")
+
+
+def apply_all_corrections(
+    df: pd.DataFrame,
+    zones_df: pd.DataFrame,
+) -> pd.DataFrame:
+    """Apply all corrections by Mariam Ehab (Person A) on the raw trips dataframe."""
+    out = fix_zone_names(df, zones_df)
+    verify_zone_fix(out, zones_df)
+    return out
