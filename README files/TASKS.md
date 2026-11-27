@@ -113,7 +113,7 @@
 | Initialize shared pipeline `notebooks/06_data_cleaning.ipynb` | Team | ✅ Done | `phase1/data-cleaning` | Base pipeline template for all 4 members |
 | Fix Audit Issues (`src/data_corrections.py` + Section 2) | Mariam (A) | ✅ Done | `phase1/A-data-corrections` | Zone mapping fix & audit corrections integrated |
 | Handle Missing Values (`src/missing_values.py` + Section 3) | Rahma (B) | ⬜ TODO | `phase1/B-missing-values` | Imputation & missingness flags |
-| Fix Data Types & Duplicates (`src/data_validation.py` + Section 4) | Bassant (C) | ⬜ TODO | `phase1/C-data-validation` | Datetime, numeric types, duplicate checks |
+| Fix Data Types & Duplicates (`src/data_validation.py` + Section 4) | Bassant (C) | ✅ Done | `phase1/C-data-validation` | Datetime, numeric types, duplicate checks integrated in `src/data_validation.py` + `tests/test_data_validation.py` |
 | Validate Target (`src/target_validation.py` + Section 5) | Rawda (D) | ⬜ TODO | `phase1/D-target-validation` | Binary 0/1 check & leakage exclusion |
 | Final validation & export `trips_model_ready.csv` (Section 6) | All | ⬜ TODO | `phase1/data-cleaning` | Run after all 4 sections are merged |
 

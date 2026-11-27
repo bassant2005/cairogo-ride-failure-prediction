@@ -11,8 +11,9 @@ python -m pytest tests -v
 ```
 ## Expected output
 
-When all tests pass, you should see `11 passed` (with `pytest`).
+Run `python -m pytest tests -v` to verify all unit and integration suites.
 
 ## Current test suites
 
 - `tests/test_data_corrections.py` — Unit tests (`TestZoneCorrectionsUnit`) and Pack v17 dataset integration/invariant tests (`TestZoneCorrectionsIntegration`) for `src/data_corrections.py` (zone name standardization, immutability, idempotency, error handling, and 0% join loss with `zones.csv`).
+- `tests/test_data_validation.py` — Unit tests (`TestDataValidationUnit`) and dataset integration tests (`TestDataValidationIntegration`) for `src/data_validation.py` (dtype standardization, duplicate removal, schema verification, primary key uniqueness, numeric range checks, immutability, and idempotency).
