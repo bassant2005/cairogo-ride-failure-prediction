@@ -14,4 +14,3 @@ Shared/exploratory notebooks that belong to a specific sub-task but don't occupy
 | `04_unit_shift_confounding.ipynb` | Phase 1 — Task 1b | Person B (Rahma) | Unit shift detection and confounding variable analysis |
 | `05_data_leakage_analysis.ipynb` | Phase 1 — Task 1c | Person C (Bassant) | Target leakage identification and single-feature AUC |
 | `06_data_cleaning.ipynb` | Phase 1.3 | All (shared pipeline) | Shared data cleaning pipeline — Sections 2–6 |
-| `data_types_validation.ipynb` | Phase 1.3 — Section 4 | Person C (Bassant) | Data types and duplicate validation (input to Section 4 of `06_data_cleaning.ipynb`) |
